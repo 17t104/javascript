@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="loading-bar.css"/>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <script type="text/javascript" src="loading-bar.js"></script>
+        <meta charset="utf-8">
+        
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- PAGE settings -->
+        <link rel="icon" href="https://blog.macsales.com/wp-content/uploads/2019/02/ios12-weather-app-icon-thumbnail_2x.png">
+        <title>Climato | Get your area climate</title>
+        <meta name="description" content="Developed by Anderson.">
+        <meta name="keywords" content="Pingendo app neon free template bootstrap 4">
+        <!-- CSS dependencies -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="neon.css">
+        <!-- Script: Make my navbar transparent when the document is scrolled to top -->
+        <script src="js/navbar-ontop.js"></script>
+        <!-- Script: Animated entrance -->
+        <script src="js/animate-in.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+    <body ng-app="myApp" ng-controller="myCtrl">
+        <!-- Navbar -->
+        <!-- Cover -->
+        <nav class="bg-dark fixed-top navbar navbar-dark navbar-expand-lg">
+            <div class="container"> 
+                <button class="navbar-toggler navbar-toggler-right border-0 p-0" type="button" data-toggle="collapse" data-target="#navbar14">
+                    <p class="navbar-brand mb-0 text-white"> <i class="fa d-inline log"><img src="https://blog.macsales.com/wp-content/uploads/2019/02/ios12-weather-app-icon-thumbnail_2x.png" width="40px"></i>Climato </p>
+                </button>
+                <div class="collapse navbar-collapse" id="navbar14">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item"> 
+                            <p class="d-none d-md-block lead mb-0  text-white"><img src="https://blog.macsales.com/wp-content/uploads/2019/02/ios12-weather-app-icon-thumbnail_2x.png" width="40px">Climato</p>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item mx-1"> 
+                            <a class="nav-link" href="#"> <i class="fa fa-github fa-fw fa-lg"></i> </a> 
+                        </li>
+                        <li class="nav-item mx-1"> 
+                            <a class="nav-link" href="#"> <i class="fa fa-gitlab fa-fw fa-lg"></i> </a> 
+                        </li>
+                        <li class="nav-item mx-1">Innovation Technologies Pvt Ltd</li>
+                        <a class="nav-link" href="#"> </a> 
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="section-fade-out pt-5 shadow-lg" style="background-image: url(https://ak.picdn.net/shutterstock/videos/1020933628/thumb/1.jpg); background-position: center bottom;">
+        <div class="container mt-5 pt-5">
+            <div class="row">
+                <div class="col-md-6 my-5 text-lg-left text-center align-self-center" style="">
+                    <h1 class="display-2">Climato</h1>
+                    <p class="lead" contenteditable="true">Webapp for area climate</p>
+                    <p>Developed by Anderson</p>
+                    <button class="notification btn btn-info" data-toggle="popover" title="1. Daily forecast report added" data-content="2. UI design for hourly forecast ready!" data-placement="bottom">
+                        <span>News Update</span>
+                        <span class="badge">2</span>
+                    </button>
+                    <style type="text/css">
+                        .notification {
+                              background-color: #555;
+                              color: white;
+                              text-decoration: none;
+                              padding: 7px 20px;
+                              position: relative;
+                              display: inline-block;
+                              border-radius: 10px;
+                            }
+
+                            .notification:hover {
+                              background: #73716d;
+                            }
+
+                            .notification .badge {
+                              position: absolute;
+                              top: -10px;
+                              right: -10px;
+                              padding: 5px 10px;
+                              border-radius: 50%;
+                              background-color: red;
+                              color: white;
+                            }
+                    </style>
+                    <script>
+                        $(document).ready(function(){
+                            $('[data-toggle="popover"]').popover();   
+                        });
+                        var app = angular.module('myApp', []);
+                                    app.controller('myCtrl', function($scope, $interval) {
+  $scope.theTime = new Date().toLocaleTimeString();
+  $interval(function () {
+      $scope.theTime = new Date().toLocaleTimeString();
+      
+  }, 1000);     
+});
+                    </script>
+                    <div class="row mt-5">
+                        <div class="col-6 col-lg-4">
+                            <a href="#"></a>
+                        </div>
+                        <div class="col-6 col-lg-4">
+                            <a href="#"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group"> 
+                        <label>Enter Pincode</label>                         
+                        <input type="number" class="form-control" placeholder="--6 Digit Pin--" required id="pincode"> 
+                    </div>                     
+                    <button onclick="getweather()" id="btns" class="btn btn-success">Get Climate</button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Article style section -->
+    <div class="container mt-5 pt-5">
+        <div class="row">
+            <div class="align-self-center col-md-12 my-5 text-center text-lg-left" id="main2" style="display: none">
+                <button onclick="notdisp()" class="btn btn-danger">Clear</button>
+                <h1 class="display-2"><img src="https://www.freepnglogos.com/uploads/lokasi-logo-png/lokasi-logo-red-map-location-icon-map-png-0.png" height="30px" width="30px" ><h2 id='area'>Location Not Found</h2><p>(Your nearest location)</p></h1>
+                <p class="lead"> <div class="time">
+                        <div>
+                            <b>Current Time: {{theTime}}</b>
+                        </div>
+                        <div>
+                            <b >Today Date: <b id="dates1"></b></b>
+                        </div>
+                        <div>
+                            <b id="climate1">Today Climate: </b>
+                        </div>
+                    </div> <div class="forcast">
+                        <img src="" class="weather-icon" alt='Error' id="icon0"/>
+                        <br>
+                        <b >Max-Temp: <b id="maxtemp">---</b> </b>&deg;F
+                        <span class="min-temperature"><br><b >Min-temp: <b id="mintemp">---</b> </b>&deg;F</span>
+                    </div> <div class="time">
+                        <div>
+                            <b >Humidity: <b id="humidity">----</b> </b> %
+                        </div>
+                        <div>
+                            <b >Wind: <b id="wind">---</b></b> km/h
+                        </div>
+                        <br>
+                        Probability of rain: 
+                        <p id="pop1">
+                        </p>
+                    </div> </p>
+                </div>
+            </div>
+        </div>
+        <div class="container" id="weekly" style="display:none">
+            <center>
+                <h1>Weekly Forecast</h1>
+            </center>
+            <div class="container">
+                <div class="row">
+                    <div class="col-11 col-md-4 col-sm-6 mt-1 mw-100 w-50">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Tomorrow</h5>
+                                <b id="dates2"></b>
+                                <p>Climate: <b id="climate2">---</b></p>
+                                <?php echo "<img src='http://openweathermap.org/img/w/".$icons[1].".png'>";?>
+                                <br>Max-Temp:
+                                <?php echo " ".$maxTemps[1]." ";?> &deg;F
+                                <br>
+                                Min-Temp:
+                                <?php echo " ".$minTemps[1];?> &deg;F
+                                <br>
+                                Humidity:
+                                <?php echo " ".$humiditys[1];?> %
+                                <br>
+                                Wind: 
+                                <?php echo $windSpeeds[1];?> km/h
+                                <br>
+                                <br>
+                                Probability of rain: 
+                                <div class="ldBar label-center" data-preset="bubble" data-value="<?php echo $pop[1];?>" data-preset-size="10" data-preset="circle" stroke-width="10"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-11 col-md-4 col-sm-6 mt-1 mw-100 w-50">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title"><p id="date3"></p></h5>
+                                <b id="dates3"></b>
+                                <p>Climate: <b id="climate3">---</b></p>
+                                <?php echo "<img src='http://openweathermap.org/img/w/".$icons[2].".png'>";?>
+                                <br>Max-Temp:
+                                <?php echo " ".$maxTemps[2]." ";?> &deg;F
+                                <br>
+                                Min-Temp:
+                                <?php echo " ".$minTemps[2];?> &deg;F
+                                <br>
+                                Humidity:
+                                <?php echo " ".$humiditys[2];?> %
+                                <br>
+                                Wind: 
+                                <?php echo $windSpeeds[2];?> km/h
+                                <br>
+                                <br>
+                                Probability of rain: 
+                                <div class="ldBar label-center" data-preset="bubble" data-value="50" data-preset-size="10" data-preset="circle" stroke-width="10"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-11 col-md-4 col-sm-6 mt-1 mw-100 w-50">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title"><p id="date4"></p></h5>
+                                <b id="dates4"></b>
+                                <p>Climate: <b id="climate4">---</b></p>
+                                <?php echo "<img src='http://openweathermap.org/img/w/".$icons[3].".png'>";?>
+                                <br>Max-Temp:
+                                <?php echo " ".$maxTemps[3]." ";?> &deg;F
+                                <br>
+                                Min-Temp:
+                                <?php echo " ".$minTemps[3];?> &deg;F
+                                <br>
+                                Humidity:
+                                <?php echo " ".$humiditys[3];?> %
+                                <br>
+                                Wind: 
+                                <?php echo $windSpeeds[3];?> km/h
+                                <br>
+                                <br>
+                                Probability of rain: 
+                                <div class="ldBar label-center" data-preset="bubble" data-value="<?php echo $pop[3];?>" data-preset-size="10" data-preset="circle" stroke-width="10"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-11 col-md-4 col-sm-6 mt-1 mw-100 w-50">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title"><p id="date5"></p></h5>
+                                <b id="dates5"></b>
+                                <p>Climate: <b id="climate5">---</b></p>
+                                <?php echo "<img src='http://openweathermap.org/img/w/".$icons[4].".png'>";?>
+                                <br>Max-Temp:
+                                <?php echo " ".$maxTemps[4]." ";?> &deg;F
+                                <br>
+                                Min-Temp:
+                                <?php echo " ".$minTemps[4];?> &deg;F
+                                <br>
+                                Humidity:
+                                <?php echo " ".$humiditys[4];?> %
+                                <br>
+                                Wind: 
+                                <?php echo $windSpeeds[4];?> km/h
+                                <br>
+                                <br>
+                                Probability of rain: 
+                                <div class="ldBar label-center" data-preset="bubble" data-value="<?php echo $pop[4];?>" data-preset-size="10" data-preset="circle" stroke-width="10"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-11 col-md-4 col-sm-6 mt-1 mw-100 w-50">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title"><p id="date6"></p></h5>
+                                <b id="dates6"></b>
+                                <p>Climate: <b id="climate6">---</b></p>
+                                <?php echo "<img src='http://openweathermap.org/img/w/".$icons[5].".png'>";?>
+                                <br>Max-Temp:
+                                <?php echo " ".$maxTemps[5]." ";?> &deg;F
+                                <br>
+                                Min-Temp:
+                                <?php echo " ".$minTemps[5];?> &deg;F
+                                <br>
+                                Humidity:
+                                <?php echo " ".$humiditys[5];?> %
+                                <br>
+                                Wind: 
+                                <?php echo $windSpeeds[5];?> km/h
+                                <br>
+                                <br>
+                                Probability of rain: 
+                                <div class="ldBar label-center" data-preset="bubble" data-value="<?php echo $pop[5];?>" data-preset-size="10" data-preset="circle" stroke-width="10"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-11 col-md-4 col-sm-6 mt-1 mw-100 w-50">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title"><p id="date7"></p></h5>
+                                <b id="dates7"></b>
+                                <p>Climate: <b id="climate7">---</b></p>
+                                <?php echo "<img src='http://openweathermap.org/img/w/".$icons[6].".png'>";?>
+                                <br>Max-Temp:
+                                <?php echo " ".$maxTemps[6]." ";?> &deg;F
+                                <br>
+                                Min-Temp:
+                                <?php echo " ".$minTemps[6];?> &deg;F
+                                <br>
+                                Humidity:
+                                <?php echo " ".$humiditys[6];?> %
+                                <br>
+                                Wind: 
+                                <?php echo $windSpeeds[6];?> km/h
+                                <br>
+                                <br>
+                                Probability of rain: 
+                                <div class="ldBar label-center" data-preset="bubble" data-value="<?php echo $pop[6];?>" data-preset-size="10" data-preset="circle" stroke-width="10"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+function openCity(cityName) {
+  var i;
+  var x = document.getElementsByClassName("city");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  document.getElementById(cityName).style.display = "block";  
+}
+</script> 
+            
+            <div class="bg-white black py-5 row">
+                <div class="col-md-5 order-2 order-md-1 animate-in-left">
+                    <img class="img-fluid d-block my-3 mx-auto" src="https://praedictix-archive.s3.amazonaws.com/sitemedia/wp-content/2018/12/03195758/Hourly-Forecast.png" width="900" height="600">
+                </div>
+                <div class="col-md-7 align-self-center order-1 order-md-2 my-3 text-md-left text-center">
+                    <h1 class="black black-text text-black-50"><span><b>Upcoming Feature</b></span></h1>
+                    <h2 class="text-black-50">Hourly Forecast</h2>
+                    <p class="font-weight-bold my-4 text-black-50">Our team now work under this feature. We will update soon</p>
+                </div>
+            </div>
+            <center>
+                <h1 class="mt-5 mt-lg-5 mt-md-5 mt-sm-5 mt-xl-5">Hourly Forecast</h1>
+            </center>
+            <div class="ml-2 ml-lg-2 ml-md-2 ml-sm-2 ml-xl-2 mr-2 mr-lg-2 mr-md-2 mr-sm-2 mr-xl-3 mt-3 py-5 row" style="border-radius: 16px;" cms-post="loop">
+                <div class="card col-lg-12 col-xl-12 text-center">
+                    <div class="w3-bar w3-black">
+                        <button class="w3-bar-item w3-button" onclick="openCity('Day 1')">Today</button>
+                        <button class="w3-bar-item w3-button" onclick="openCity('Day 2')">Tommorrow</button>
+                        
+                    </div>
+                    <div id="Day 1" class="w3-container city" style="overflow: auto;">
+                        <h2>Today</h2>
+                        <p>Hourly Climate Details will upload soon for today. <br>Please be calm.</p>
+                    </div>
+                    <div id="Day 2" class="w3-container city" style="display:none">
+                        <h2>Tommorrow</h2>
+                        <p>Hourly Climate Details will upload soon for tommorrow. <br>Please be calm.</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="py-5" id='main1' style="display:block; transition: 1s;">
+            <div class="container">
+                <div class="row py-5">
+                </div>
+                <div class="row pt-5">
+                    <div class="align-self-center col-lg-7 text-md-left text-center">
+                        <h2>Works everywhere</h2>
+                        <p class="my-4 text-white">You can access this webpage from everywhere in the world</p>
+                    </div>
+                    <div class="align-self-center mt-5 col-lg-5 animate-in-right">
+                        <img class="img-fluid d-block" src="weather logo.gif"> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Features -->
+        <div class="py-5" id="features">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h2 class="pb-4">Features of this page</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="align-self-center text-md-right text-center col-lg-4 col-md-6">
+                        <h4 class="text-primary">Responsive design</h4>
+                        <p class="mb-5 text-white">Based on fluid design principles. <br>Works with any screen resolution</p>
+                        <h4 class="text-primary">Customized settings</h4>
+                        <p class="mb-5 text-white">Choose settings depending on the criteria you value the most. With no limits.</p>
+                        <h4 class="text-primary">Connect</h4>
+                        <p class="mb-5 text-white">In-app chat panel 24/7 active. <br>The support you need, right there.</p>
+                    </div>
+                    <div class="my-3 col-md-4 d-none d-lg-block animate-in-down">
+                        <img class="img-fluid d-block mx-auto" src="assets/app/iphone_features_dark.png" width="300"> 
+                    </div>
+                    <div class="align-self-center text-md-left text-center col-lg-4 col-md-6">
+                        <h4 class="text-primary">Upcoming Update-Hourly Forecast</h4>
+                        <p class="mb-5 text-white">We will soon update the feature for hourly report</p>
+                        <h4 class="text-primary">API Backend</h4>
+                        <p class="mb-5 text-white">PHP framework connects with API will give you an enormours data.</p>
+                        <h4 class="text-primary">Share the love</h4>
+                        <p class="mb-5 text-white">Help us spreading the word. <br>Tell your friends with just one-click</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Features -->
+        <!-- Carousel reviews -->
+        <div class="pb-5 section text-center" id="reviews">
+            <div class="container">
+                <hr>
+                <div class="row pt-5">
+                    <div class="col-12">
+                        <div id="carousel" class="carousel slide" data-ride="carousel" data-interval="5000">
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Call to action -->
+        <div class="py-5 bg-primary" id="download">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 animate-in-left">
+                        <img class="img-fluid d-block my-4 animate-slide-in" src="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4qhJR"> 
+                    </div>
+                    <div class="col-md-6 align-self-center text-center text-md-left">
+                        <h1><b>Download Climato(Available Soon)</b></h1>
+                        <p class="lead text-dark"><b class="text-white">Beta version of mobile app is under development will release soon.</b></p>
+                        <div class="row mt-5">
+                            <div class="col-6 col-lg-4">
+                                <a href="#"> <img class="center-block img-fluid d-block shadowed" src="assets/app/download_android.png"> </a>
+                            </div>
+                            <div class="col-6 col-lg-4">
+                                <a href="#"> <img class="center-block img-fluid d-block shadowed" src="assets/app/download_ios.png"> </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        <div class="py-5 bg-dark">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 my-3 text-center">
+                        <p class="text-white">&copy; Copyright 2020 - Innovation Technologies Pvt Ltd - All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- JavaScript dependencies -->
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <!-- Script: Smooth scrolling between anchors in the same page -->
+        <script src="js/smooth-scroll.js"></script>
+    </body>
+<script type="text/javascript">
+                            function notdisp()
+                            {
+                                console.log("Clear Function");
+                                var disp1=document.querySelector("#main1");
+                                disp1.style.display="block";
+                                var disp2=document.querySelector("#features");
+                                disp2.style.display="block";
+                                var disp3=document.querySelector("#main2");
+                                disp3.style.display="none";
+                                var weekly=document.querySelector("#weekly");
+                                    weekly.style.display="none";
+                            }
+                            function getweather()
+                            {
+                                var em=document.getElementById('pincode').value;
+                                if(em.length==0)
+                                {
+                                    alert("Please enter a pincode");
+                                }
+                                else{
+                                    var weekly=document.querySelector("#weekly");
+                                    weekly.style.display="block";
+                                    var disp1=document.querySelector("#main1");
+                                    disp1.style.display="none";
+                                    var disp2=document.querySelector("#features");
+                                    disp2.style.display="none";
+                                    var disp3=document.querySelector("#main2");
+                                    disp3.style.display="block";
+                                    
+                                    
+                                    
+                                    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                                    var d = new Date();
+                                    $('#pop1').attr('data-value','27');
+                                    
+                                    for(i=3;i<=7;i++)
+                                    {
+                                        var idhere="date"+i;
+                                        var dayName = days[(d.getDay()+i-1)%7];
+                                        document.getElementById(idhere).innerHTML=dayName;
+                                    }
+
+
+
+                                    var data,lat,lon;
+                                    var key="ff353a084edd0d76f8512b323ad50b94";
+                                    console.log("Start");
+                                    var pincode=document.getElementById('pincode').value;
+                                    fetch('https://api.openweathermap.org/data/2.5/weather?zip=' + pincode+ ',in&appid=' + key)  
+                                    .then(function(resp) { return resp.json() }) // Convert data to json
+                                    .then(data=> {
+                                    console.log(data);
+                                    console.log(data['coord']['lat']);
+                                    lat=data['coord']['lat'];
+                                    lon=data['coord']['lon'];
+                                    document.cookie="lat="+lat;
+                                    document.cookie="lon="+lon;
+                                    
+                                    console.log(document.cookie);
+                                    
+                                    document.getElementById('area').innerHTML=data['name'];
+                                    document.getElementById('climate1').innerHTML="Today climate: "+data['weather'][0]['description'];
+                                    var ic="http://openweathermap.org/img/w/"+data['weather'][0]['icon']+".png";
+                                    $('#icon0').attr('src',ic);
+                                    document.getElementById('maxtemp').innerHTML=(((data['main']['feels_like']-273.15)*1.8)+32).toFixed(2);
+                                    document.getElementById('mintemp').innerHTML=(((data['main']['temp_min']-273.15)*1.8)+32).toFixed(2);
+                                    document.getElementById('humidity').innerHTML=data['main']['humidity'];
+                                    document.getElementById('wind').innerHTML=data['wind']['speed'];
+                                    var today = new Date();
+                                    document.getElementById('pop1').innerHTML="<div class='ldBar label-center' data-preset='bubble' data-value='30' data-preset-size='10' data-preset='circle' stroke-width='10' ></div>";
+                                    for(i=1;i<=7;i++)
+                                    {
+                                        $('#pop1').attr('data-value','27');
+                                        var year = today.getFullYear();
+                                        var mes = today.getMonth()+1;
+                                        var dia = today.getDate()+i-1;
+                                        var fecha =dia+"/"+mes+"/"+year;
+                                        var dates="dates"+i;
+                                        document.getElementById(dates).innerHTML=fecha;
+                                    }
+
+                                    //w();
+
+
+                                })
+                                .catch(function() {
+                                console.log("Error");
+                                });
+                                function w(){
+                                var weeks;
+                                
+                                    var key="ff353a084edd0d76f8512b323ad50b94";
+                                    console.log("Start week");
+                                    fetch('https://api.openweathermap.org/data/2.5/onecall?lat='+c['lat']+'&lon='+c['lon']+'&exclude=hourly&appid='+key).then(function(resp) { return resp.json() }) // Convert data to json
+                                    .then(weeks=> {
+                                    console.log(weeks);
+                                    
+                                    document.getElementById('pop1').innerHTML="<div class='ldBar label-center' data-preset='bubble' data-value='30' data-preset-size='10' data-preset='circle' stroke-width='10' ></div>";
+                                   
+
+                                })
+                                .catch(function() {
+                                console.log("Error");
+                                }); 
+                            }
+
+
+
+                                //var obj = JSON.parse(data);
+                                //console.log(data['name']);
+                                }
+                            }
+                        </script>
